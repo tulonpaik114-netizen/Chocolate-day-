@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Chocolate Day Gargi 🍫</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #3e2723, #5d4037);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.card {
+    background: #fff3e0;
+    width: 90%;
+    max-width: 350px;
+    padding: 25px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+    cursor: pointer;
+    animation: pop 1s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.emoji {
+    font-size: 42px;
+    animation: bounce 1.6s infinite;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+h1 {
+    margin: 10px 0;
+    color: #4e342e;
+}
+
+.tap {
+    font-size: 14px;
+    color: #8d6e63;
+}
+
+.message {
+    display: none;
+    margin-top: 15px;
+    color: #5d4037;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.from {
+    display: none;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #3e2723;
+}
+
+/* Chocolate + heart rain */
+.drop, .sparkle {
+    position: absolute;
+    top: -40px;
+    animation: fall linear forwards;
+}
+
+.drop {
+    font-size: 22px;
+}
+
+.sparkle {
+    font-size: 16px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c7b7bcd62.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" onclick="openCard()">
+    <div class="emoji">🍫</div>
+    <h1>Happy Chocolate Day</h1>
+    <div class="tap" id="tapText">👆 Tap to reveal surprise</div>
+
+    <div class="message" id="msg">
+        Dear <b>Gargi</b> 🤎<br><br>
+        You’re sweeter than chocolate 🍫  
+        and brighter than my mood on bad days 😄✨  
+        Thanks for being my best friend —  
+        full of laughs, care, and pure happiness 💖
+    </div>
+
+    <div class="from" id="fromText">— Tulon 💕</div>
+</div>
+
+<script>
+function openCard() {
+    document.getElementById("msg").style.display = "block";
+    document.getElementById("fromText").style.display = "block";
+    document.getElementById("tapText").style.display = "none";
+    document.getElementById("bgMusic").play();
+    rain();
+}
+
+function rain() {
+    for (let i = 0; i < 40; i++) {
+        let item = document.createElement("div");
+        item.className = Math.random() > 0.7 ? "sparkle" : "drop";
+        item.innerHTML = item.className === "sparkle" ? "✨" : (Math.random() > 0.5 ? "🍫" : "🤎");
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(item);
+
+        setTimeout(() => item.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+  </html>
